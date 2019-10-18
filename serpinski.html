@@ -1,0 +1,95 @@
+<canvas id="myCanvas" style="border:1px solid;display:block;margin:0px auto"></canvas>
+
+<script>
+
+var c = document.getElementById("myCanvas");
+c.width = 800;
+c.height = 800;
+var ctx = c.getContext("2d");
+
+var position = [20,500];
+var lastPosition = [20,500];
+drawPoint();
+drawDefaultPoint();
+var n = 0;
+setInterval(function(){
+	generateRandomPOint();
+	n++;
+	if(n==1000000){
+		console.log("Milion")
+	}else if(n==10000000){
+		console.log("10 Milion")
+	}else if(n==100000000){
+		console.log("100 Milion")
+	}
+},1)
+
+function drawPoint(){
+	ctx.beginPath();
+	ctx.font = "18px Arial";
+	ctx.fillText("A", 15, 660);
+	ctx.fillStyle = "#008000";
+	ctx.arc(20, 600,3,0, Math.PI * 2, true); 
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.font = "18px Arial";
+	ctx.fillText("B", 395, 30);
+	ctx.fillStyle = "#ff2626"; 
+	ctx.arc(400, 60,3,0, Math.PI * 2, true); 
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.font = "18px Arial";
+	ctx.fillText("C", 770, 660);
+	ctx.fillStyle = "#0000ff"; 
+	ctx.arc(780, 600,3,0, Math.PI * 2, true); 
+	ctx.fill();	
+}
+
+function drawDefaultPoint(){
+	ctx.beginPath();
+	ctx.fillStyle = "#0000ff"; 
+	ctx.arc(position[0], position[1],3,0, Math.PI * 2, true); 
+	ctx.fill();	
+}
+/*var a = 195 - lastPosition[0];
+var b = 30 - lastPosition[1];
+console.log("setCurent",Math.sqrt(a*a + b*b))
+var x = 250-((195-lastPosition[0])*-1) + (((195-lastPosition[0])*-1)/2)
+var y = 30 - ((30 - lastPosition[1])/2);
+console.log("x",30 -((30 - lastPosition[1])/2))
+console.log("x",x)
+console.log("y",y)
+	ctx.beginPath();
+
+	ctx.fillStyle = "#ff2626"; 
+	ctx.arc(x, y,3,0, Math.PI * 2, true); 
+	ctx.fill();*/
+	
+function generateRandomPOint(){
+	var random = Math.round(Math.random()*2);
+	var x = null;
+	var y = null;
+	
+	if(random == 0){ // A
+		x = lastPosition[0]-((20-lastPosition[0])*-1) + (((20-lastPosition[0])*-1)/2)
+		y = 600 - ((600 - lastPosition[1])/2);
+	}else if(random == 1){ // b
+		x = lastPosition[0]-((400-lastPosition[0])*-1) + (((400-lastPosition[0])*-1)/2)
+		y = 60 - ((60 - lastPosition[1])/2);
+	}else if(random == 2){ // c
+		x = lastPosition[0]-((780-lastPosition[0])*-1) + (((780-lastPosition[0])*-1)/2)
+		y = 600 - ((600 - lastPosition[1])/2);
+	}
+	lastPosition[0] = x;
+	lastPosition[1] = y;
+	ctx.beginPath();
+	ctx.fillStyle = "#000000"; 
+	ctx.arc(x, y,1,0, Math.PI * 2, true); 
+	ctx.fill();
+
+	
+}
+
+</script>
